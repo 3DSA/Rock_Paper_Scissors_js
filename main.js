@@ -47,5 +47,4 @@ function game(gamesplayed) {
         alert(playRound(playerChoice,compChoice)); 
     }
 }
-rounds = prompt("How many rounds do you want to play!");
-game(rounds);
+
