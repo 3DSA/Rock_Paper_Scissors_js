@@ -39,12 +39,62 @@ function playRound(player, comp) {
         }
     }
 }
-function game(gamesplayed) {
-    for(let i = 0; i < gamesplayed; ++i) {
-        let compChoice = getComputerChoice();
-        let playerChoice = prompt("Choose rock, paper, or scissors!");
-        playerChoice = playerChoice.toLowerCase();
-        alert(playRound(playerChoice,compChoice)); 
+function gameover(ps, cs) {
+    if(ps == 5) {
+        playerscores.textContent = "You won!";
+        computerscores.textContent = "";
+
     }
+    else if(cs == 5) {
+        playerscores.textContent = "You lost!";
+        computerscores.textContent = "";
+    }   
+}
+function game() {
+    let playerscore = 0;
+    let compscore = 0;
+    let temp = "";
+    const rock = document.getElementById('rockbtn');
+    rock.addEventListener('click', () => {
+        temp = playRound("rock", getComputerChoice());
+        if(temp === "You won!") {
+            playerscore +=1;
+        }
+        else if(temp === "You lost!"){
+            compscore +=1;
+        }
+        playerscores.textContent = "Player: " + playerscore.toString();
+        computerscores.textContent = "Computer: " + compscore.toString();
+        gameover(playerscore, compscore); 
+    });
+    const paper = document.getElementById('paperbtn');
+    paper.addEventListener('click', () => {
+        temp = playRound("paper", getComputerChoice());
+        if(temp === "You won!") {
+            playerscore +=1;
+        }
+        else if(temp === "You lost!"){
+            compscore +=1;
+        }
+        playerscores.textContent = "Player: " + playerscore.toString();
+        computerscores.textContent = "Computer: " + compscore.toString();
+        gameover(playerscore, compscore);
+    });
+    const scissors = document.getElementById('scissorsbtn');
+    scissors.addEventListener('click', () => {
+        temp = playRound("scissors", getComputerChoice());
+        if(temp === "You won!") {
+            playerscore +=1;
+        }
+        else if(temp === "You lost!"){
+            compscore +=1;
+        }
+        playerscores.textContent = "Player: " + playerscore.toString();
+        computerscores.textContent = "Computer: " + compscore.toString();
+        gameover(playerscore, compscore);
+    });
+}
+window.onload = function() {
+    game();
 }
 
